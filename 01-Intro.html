@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Intro / Brief | PowerPeopleandDisplacement</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.b050d634.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.b050d634.css">
+<link rel="modulepreload" href="./_observablehq/client.509b5047.js">
+<link rel="modulepreload" href="./_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.277aeab8.js">
+<link rel="icon" href="./_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "./_observablehq/client.509b5047.js";
+
+define({id: "d0cdbea4", inputs: ["sessionStorage"], outputs: ["createFloodSystem"], body: (sessionStorage) => {
+function createFloodSystem() {
+
+  // remove any previous flood canvas (prevents stacking)
+  document.querySelectorAll("canvas[data-flood='true']").forEach(c => c.remove());
+
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+
+  canvas.dataset.flood = "true";
+
+  canvas.style.position = "fixed";
+  canvas.style.left = "0";
+  canvas.style.top = "0";
+  canvas.style.width = "100vw";
+  canvas.style.height = "100vh";
+  canvas.style.pointerEvents = "none";
+  canvas.style.zIndex = "5";
+
+  document.body.appendChild(canvas);
+
+  let w = canvas.width = window.innerWidth * devicePixelRatio;
+  let h = canvas.height = window.innerHeight * devicePixelRatio;
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+
+  let flood = parseFloat(sessionStorage.getItem("flood") || "0");
+  let target = flood;
+
+  const color = "rgba(10, 136, 207, 0.35)";
+
+  function draw() {
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+    const time = performance.now() * 0.001;
+    const wave = Math.sin(time * 1.2) * 0.03;
+
+    const level = flood + wave;
+
+    const y = window.innerHeight - level * (window.innerHeight + 120);
+
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(0, window.innerHeight);
+    ctx.lineTo(0, y);
+    ctx.lineTo(window.innerWidth, y);
+    ctx.lineTo(window.innerWidth, window.innerHeight);
+    ctx.closePath();
+    ctx.fill();
+
+    // smooth movement only (NO transition states)
+    flood += (target - flood) * 0.05;
+
+    sessionStorage.setItem("flood", target);
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+
+  function setLevel(v) {
+    target = v;
+    sessionStorage.setItem("flood", v);
+  }
+
+  return { setLevel };
+}
+return {createFloodSystem};
+}});
+
+define({id: "10e06790", inputs: ["createFloodSystem"], outputs: ["floodSystem"], body: (createFloodSystem) => {
+const floodSystem = createFloodSystem();
+return {floodSystem};
+}});
+
+define({id: "7997dead", inputs: ["floodSystem"], body: (floodSystem) => {
+floodSystem.setLevel(0.15);
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">PowerPeopleandDisplacement</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link observablehq-link-active"><a href="./01-Intro">Intro / Brief</a></li>
+    <li class="observablehq-link"><a href="./02-text-1">The Suorva Dam and Akkajaure Reservoir</a></li>
+    <li class="observablehq-link"><a href="./03-map-1">Map 1 — Suorva Dam</a></li>
+    <li class="observablehq-link"><a href="./04-text-2">The Messaure Power Plant</a></li>
+    <li class="observablehq-link"><a href="./05-map-2">Map 2 — Messaure</a></li>
+    <li class="observablehq-link"><a href="./06-final">End Credits</a></li>
+  </ol>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+<div>Contents</div>
+<ol>
+<li class="observablehq-secondary-link"><a href="#how-did-we-get-here">How did we get here?</a></li>
+<li class="observablehq-secondary-link"><a href="#power-supply-background">Power Supply Background</a></li>
+<li class="observablehq-secondary-link"><a href="#the-range-of-impact-and-implications">The Range of Impact and Implications</a></li>
+<li class="observablehq-secondary-link"><a href="#the-project">The Project</a></li>
+</ol>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<div class="observablehq observablehq--block"><!--:d0cdbea4:--></div>
+<link rel="stylesheet" href="./_file/style.c59bbc62.css">
+<div class="global-banner">
+  <div class="global-banner__track">
+    Flooding is not an event. &nbsp;&nbsp;
+    It is a process of gradual displacement. &nbsp;&nbsp;
+    What becomes visible is not the water itself, but what it replaces. &nbsp;&nbsp;
+  </div>
+</div>
+<h1 id="intro-brief" tabindex="-1"><a class="observablehq-header-anchor" href="#intro-brief">Intro / Brief</a></h1>
+<h1 id="how-did-we-get-here" tabindex="-1"><a class="observablehq-header-anchor" href="#how-did-we-get-here">How did we get here?</a></h1>
+<p>Sami country – known as Sápmi – stretches across the northern parts of Sweden, Norway and Finland, and Russia’s Kola Peninsula. The original settlement was even larger, but the indigenous Sami were gradually forced to give up land, first to farmers starting in the 1650s and later to industries. <a href="https://sweden.se/life/people/sami-in-sweden" target="_blank" rel="noopener noreferrer">https://sweden.se/life/people/sami-in-sweden</a></p>
+<h2 id="power-supply-background" tabindex="-1"><a class="observablehq-header-anchor" href="#power-supply-background">Power Supply Background</a></h2>
+<p>Hydroelectric dams account for nearly 45% of Sweden's power supply, and it is no surprise large swaths of land have been flooded into retaining reservoirs for this cause. However, the consequences of these floods is frequently overlooked.</p>
+<h1 id="the-range-of-impact-and-implications" tabindex="-1"><a class="observablehq-header-anchor" href="#the-range-of-impact-and-implications">The Range of Impact and Implications</a></h1>
+<p>Over 80% of this hydroelectric power comes from the Sapmi region of northern Sweden, where the indigenous Sámi peoples live and herd reindeer. Unfortunately, many of these dams were put in place with little to no free and informed prior consent. Not only is the land and biodiversity that their culture thrives on put in danger in these scenarios, but their settlements and herding paths were frequently washed away entirely. In nearby Norway, facing similar concerns, the Water Resources and Energy Directorate emphasizes that many former grazing pastures are no longer even touched by herds, with reindeer forced to scatter into new areas, or overgraze the other pre-existing pastures. This not only causes ecological concerns but also further forces the uprooting of the Sámi peoples. Furthermore, natural lakes and frozen rivers have historically served as the safest migration paths for reindeer herds. The deeper, fluctuating water levels caused by hydropower operations result in unstable and unsafe ice conditions, making it nearly impossible for animals or land-based travelers like the Sámi to cross.</p>
+<h1 id="the-project" tabindex="-1"><a class="observablehq-header-anchor" href="#the-project">The Project</a></h1>
+<p>To help portray this problem more exactly, our team set out to provide geotechnical data on a few major instances of this flooding's negative impacts. Below, you will find information on each in particular, alongside sliding scales of the water banks before and after dam construction.</p>
+<div class="observablehq observablehq--block"><!--:10e06790:--></div>
+<div class="observablehq observablehq--block"><!--:7997dead:--></div>
+<ul>
+<li><a href="./02-text-1">Continue →The Suorva Dam and Akkajaure Reservoir</a></li>
+</ul>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./"><span>PowerPeopleandDisplacement</span></a><a rel="next" href="./02-text-1"><span>The Suorva Dam and Akkajaure Reservoir</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-16T12:27:16">Jun 16, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>
