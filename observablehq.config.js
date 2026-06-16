@@ -1,5 +1,7 @@
 // See https://observablehq.com/framework/config for documentation.
 export default {
+  root: "src",
+  base: "/Power-People-Displacement/",
   // The app’s title; used in the sidebar and webpage titles.
   title: "PowerPeopleandDisplacement",
 
