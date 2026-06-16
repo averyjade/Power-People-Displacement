@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="generator" content="Observable Framework v1.13.4">
+<title>Map 1 — Suorva Dam | PowerPeopleandDisplacement</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="preload" as="style" href="./_observablehq/theme-air,near-midnight.b050d634.css">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&amp;display=swap" crossorigin>
+<link rel="stylesheet" type="text/css" href="./_observablehq/theme-air,near-midnight.b050d634.css">
+<link rel="modulepreload" href="./_observablehq/client.509b5047.js">
+<link rel="modulepreload" href="./_observablehq/runtime.607a8173.js">
+<link rel="modulepreload" href="./_observablehq/stdlib.277aeab8.js">
+<link rel="modulepreload" href="./_npm/htl@1.0.0/87d6f6ef.js">
+<link rel="icon" href="./_file/observable.1af93621.png" type="image/png" sizes="32x32">
+<script type="module">
+
+import {define} from "./_observablehq/client.509b5047.js";
+
+define({id: "5a9fcb80", outputs: ["createFloodSystem"], body: () => {
+document
+  .querySelectorAll("canvas[data-flood='true']")
+  .forEach(c => c.remove());
+
+function createFloodSystem(level = 0.3) {
+
+  const canvas =
+    document.createElement("canvas");
+
+  const ctx =
+    canvas.getContext("2d");
+
+  let visible = true;
+
+  canvas.dataset.flood =
+    "true";
+
+  Object.assign(
+    canvas.style,
+    {
+      position: "fixed",
+      inset: "0",
+      width: "100vw",
+      height: "100vh",
+      pointerEvents: "none",
+      zIndex: "5"
+    }
+  );
+
+  document.body.appendChild(
+    canvas
+  );
+
+  canvas.width =
+    window.innerWidth *
+    devicePixelRatio;
+
+  canvas.height =
+    window.innerHeight *
+    devicePixelRatio;
+
+  ctx.scale(
+    devicePixelRatio,
+    devicePixelRatio
+  );
+
+  function draw() {
+
+    ctx.clearRect(
+      0,
+      0,
+      window.innerWidth,
+      window.innerHeight
+    );
+
+    if (!visible) {
+      requestAnimationFrame(draw);
+      return;
+    }
+
+    const wave =
+      Math.sin(
+        performance.now() *
+        0.001
+      ) * 12;
+
+    const y =
+      window.innerHeight *
+      (1 - level) +
+      wave;
+
+    ctx.fillStyle =
+      "rgba(10,136,207,.35)";
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      0,
+      window.innerHeight
+    );
+
+    ctx.lineTo(
+      0,
+      y
+    );
+
+    ctx.lineTo(
+      window.innerWidth,
+      y
+    );
+
+    ctx.lineTo(
+      window.innerWidth,
+      window.innerHeight
+    );
+
+    ctx.closePath();
+
+    ctx.fill();
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+
+  // 🌊 CLICK TO REMOVE FLOOD
+  window.addEventListener(
+    "click",
+    () => {
+
+      visible = false;
+
+      canvas.style.display =
+        "none";
+
+    }
+  );
+
+}
+
+createFloodSystem(0.3);
+
+undefined
+return {createFloodSystem};
+}});
+
+define({id: "c41e5b01", inputs: ["html","display"], body: async (html,display) => {
+display(await(
+html.fragment`<div style="
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 20;
+
+  width: 280px;
+  padding: 12px 14px;
+
+  color: white;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.4;
+
+  background: rgba(0,0,0,0.3);
+  border-radius: 8px;
+  backdrop-filter: blur(6px);
+">
+
+  <strong>Interaction Guide: Click Anywhere On the Screen to Start Exploring </strong>
+  <br><br>
+
+  <strong>Top slider → Map Overlay</strong><br>
+  Controls what parts of the terrain are visible.<br><br>
+
+  <strong>Right slider → Water Level</strong><br>
+  Controls how much of the landscape is submerged.<br><br>
+
+  Together they simulate:<br>
+  “what is there” vs “what is being erased by water.” <br><br>
+
+  Collapse sidebar for full-screen.
+
+</div>`
+))
+}});
+
+</script>
+</head>
+<body>
+<input id="observablehq-sidebar-toggle" type="checkbox" title="Toggle sidebar">
+<label id="observablehq-sidebar-backdrop" for="observablehq-sidebar-toggle"></label>
+<nav id="observablehq-sidebar">
+  <ol>
+    <label id="observablehq-sidebar-close" for="observablehq-sidebar-toggle"></label>
+    <li class="observablehq-link"><a href="./">PowerPeopleandDisplacement</a></li>
+  </ol>
+  <ol>
+    <li class="observablehq-link"><a href="./01-Intro">Intro / Brief</a></li>
+    <li class="observablehq-link"><a href="./02-text-1">The Suorva Dam and Akkajaure Reservoir</a></li>
+    <li class="observablehq-link observablehq-link-active"><a href="./03-map-1">Map 1 — Suorva Dam</a></li>
+    <li class="observablehq-link"><a href="./04-text-2">The Messaure Power Plant</a></li>
+    <li class="observablehq-link"><a href="./05-map-2">Map 2 — Messaure</a></li>
+    <li class="observablehq-link"><a href="./06-final">End Credits</a></li>
+  </ol>
+</nav>
+<script>{const e=document.querySelector("#observablehq-sidebar"),o=document.querySelector("#observablehq-sidebar-toggle"),r=sessionStorage.getItem("observablehq-sidebar");r?o.checked=r==="true":o.indeterminate=!0;for(const t of document.querySelectorAll("#observablehq-sidebar summary")){const s=t.parentElement;switch(sessionStorage.getItem(`observablehq-sidebar:${t.textContent}`)){case"true":s.open=!0;break;case"false":s.classList.contains("observablehq-section-active")||(s.open=!1);break}}addEventListener("beforeunload",()=>sessionStorage.setItem("observablehq-sidebar-scrolly",`${e.scrollTop}`));const a=sessionStorage.getItem("observablehq-sidebar-scrolly");a!=null&&(e.style.cssText="overflow: hidden;",e.scrollTop=+a,e.style.cssText="");}</script>
+<div id="observablehq-center">
+<aside id="observablehq-toc" data-selector="h1:not(:first-of-type)[id], h2:first-child[id], :not(h1) + h2[id]">
+<nav>
+</nav>
+</aside>
+<main id="observablehq-main" class="observablehq">
+<div class="observablehq observablehq--block"><!--:5a9fcb80:--></div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:c41e5b01:--></div>
+<link rel="stylesheet" href="./_file/style.c59bbc62.css">
+<div class="global-banner">
+  <div class="global-banner__track">
+    Flooding is not an event. &nbsp;&nbsp;
+    It is a process of gradual displacement. &nbsp;&nbsp;
+    What becomes visible is not the water itself, but what it replaces. &nbsp;&nbsp;
+  </div>
+</div>
+<h1 id="map-1-suorva-dam" tabindex="-1"><a class="observablehq-header-anchor" href="#map-1-suorva-dam">Map 1 — Suorva Dam</a></h1>
+<link href="https://unpkg.com/maplibre-gl@5.6.2/dist/maplibre-gl.css" rel="stylesheet">
+<!-- TOP: terrain slider -->
+<div style="margin-bottom:10px;">
+<label>
+Topography Intensity
+<input id="terrainSlider" type="range" min="0" max="100" value="65" style="width:100%;">
+</label>
+</div>
+<div style="display:flex; gap:12px;">
+<!-- MAP -->
+<div id="map" style="flex:1; height:85vh;"></div>
+<!-- RIGHT: water slider (VISUALLY RISING) -->
+<div style="width:60px; display:flex; align-items:center; justify-content:center;">
+<input id="waterSlider" type="range" min="0" max="100" value="0" style="
+height:85vh;
+writing-mode: vertical-lr;
+direction: rtl;
+">
+</div>
+</div>
+<script type="module">
+
+import maplibregl from "https://esm.sh/maplibre-gl";
+
+const terrainSlider =
+document.getElementById("terrainSlider");
+
+const waterSlider =
+document.getElementById("waterSlider");
+
+const map =
+new maplibregl.Map({
+
+container:"map",
+
+center:[18.0686,59.3293],
+
+zoom:2,
+
+style:
+"https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json",
+
+scrollZoom:true
+
+});
+
+map.on("load",()=>{
+
+// -------------------------
+// BASE TERRAIN LAYER
+// -------------------------
+
+map.addSource("historical-map",{
+type:"raster",
+tiles:[
+"https://gsk.enchart.me/{z}/{x}/{y}.png"
+],
+tileSize:256,
+minzoom:0,
+maxzoom:15
+});
+
+map.addLayer({
+
+id:"historical-map",
+
+type:"raster",
+
+source:"historical-map",
+
+paint:{
+"raster-opacity":0.65
+}
+
+});
+
+// terrain slider = fades context
+terrainSlider.addEventListener("input",()=>{
+
+map.setPaintProperty(
+"historical-map",
+"raster-opacity",
+0.65 * Number(terrainSlider.value)/100
+);
+
+});
+
+// -------------------------
+// FLOOD POLYGON
+// -------------------------
+
+map.addSource("modern_shape",{
+type:"vector",
+tiles:[
+"https://lule.enchart.me/api/v1/tiles/modern_shape/{z}/{x}/{y}"
+]
+});
+
+map.addLayer({
+
+id:"flood",
+
+type:"fill",
+
+source:"modern_shape",
+
+"source-layer":"modern_shape",
+
+paint:{
+"fill-color":"#4E8DFF",
+"fill-opacity":0
+}
+
+});
+
+// water slider = rising flood level
+waterSlider.addEventListener("input",()=>{
+
+const v = Number(waterSlider.value)/100;
+
+const level = Math.pow(v, 2.2);
+
+map.setPaintProperty(
+"flood",
+"fill-opacity",
+level
+);
+
+});
+
+// -------------------------
+// CAMERA
+// -------------------------
+
+map.fitBounds(
+[16.42,67.12,19.35,68.92],
+{
+padding:40,
+maxZoom:15
+}
+);
+
+});
+
+</script>
+<ul>
+<li><a href="./04-text-2">Continue → The Messaure Power Plant</a></li>
+</ul>
+</main>
+<footer id="observablehq-footer">
+<nav><a rel="prev" href="./02-text-1"><span>The Suorva Dam and Akkajaure Reservoir</span></a><a rel="next" href="./04-text-2"><span>The Messaure Power Plant</span></a></nav>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2026-06-16T13:01:34">Jun 16, 2026</a>.</div>
+</footer>
+</div>
+</body>
+</html>
